@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMJ Studio | Streetwear</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0b0b;
+      color: white;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(11, 11, 11, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 7px;
+    }
+
+    .logo span {
+      color: #bdbdbd;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      color: #cfcfcf;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .cart {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 140px 24px 80px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 20% 75%, rgba(126, 87, 194, 0.32), transparent 30%),
+        #0b0b0b;
+    }
+
+    .hero::before {
+      content: "AMJ AMJ AMJ AMJ AMJ";
+      position: absolute;
+      top: 20%;
+      left: -8%;
+      font-size: 120px;
+      font-weight: 900;
+      letter-spacing: 16px;
+      color: rgba(255, 255, 255, 0.035);
+      transform: rotate(-8deg);
+      white-space: nowrap;
+    }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .pill {
+      display: inline-block;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      padding: 11px 18px;
+      color: #d8d8d8;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: clamp(58px, 9vw, 120px);
+      line-height: 0.88;
+      text-transform: uppercase;
+      font-weight: 950;
+      letter-spacing: -5px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #ffffff, #b7a4ff, #ffffff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 560px;
+      margin-top: 28px;
+      color: #c9c9c9;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .buttons {
+      margin-top: 34px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      padding: 16px 24px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: 0.25s;
+    }
+
+    .btn-primary {
+      background: white;
+      color: black;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: #e9e9e9;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    .design-card {
+      min-height: 560px;
+      border-radius: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.13), rgba(255,255,255,0.02)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.08) 0 2px, transparent 2px 18px),
+        #151515;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    .shirt {
+      width: 78%;
+      height: 410px;
+      margin: 55px auto 0;
+      background: linear-gradient(145deg, #1b1b1b, #2c2c2c);
+      clip-path: polygon(22% 0, 38% 0, 43% 10%, 57% 10%, 62% 0, 78% 0, 100% 22%, 86% 38%, 76% 30%, 76% 100%, 24% 100%, 24% 30%, 14% 38%, 0 22%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: inset 0 0 50px rgba(255,255,255,0.05);
+    }
+
+    .shirt-logo {
+      font-size: 48px;
+      font-weight: 950;
+      letter-spacing: 8px;
+    }
+
+    .shirt-logo small {
+      display: block;
+      margin-top: 12px;
+      font-size: 12px;
+      letter-spacing: 5px;
+      color: #b7a4ff;
+    }
+
+    .floating-label {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(14px);
+      padding: 18px;
+      border-radius: 22px;
+    }
+
+    section {
+      padding: 90px 24px;
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(38px, 6vw, 76px);
+      text-transform: uppercase;
+      line-height: 0.95;
+    }
+
+    .section-title p {
+      color: #bdbdbd;
+      max-width: 420px;
+      line-height: 1.7;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      background: #151515;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      overflow: hidden;
+      transition: 0.25s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 255, 255, 0.26);
+    }
+
+    .product-visual {
+      height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background:
+        radial-gradient(circle, rgba(183, 164, 255, 0.22), transparent 34%),
+        #1d1d1d;
+    }
+
+    .mini-shirt {
+      width: 185px;
+      height: 230px;
+      background: #101010;
+      clip-path: polygon(22% 0, 38% 0, 43% 10%, 57% 10%, 62% 0, 78% 0, 100% 22%, 86% 38%, 76% 30%, 76% 100%, 24% 100%, 24% 30%, 14% 38%, 0 22%);
+      border: 1px solid rgba(255,255,255,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 950;
+      letter-spacing: 4px;
+    }
+
+    .hoodie {
+      border-radius: 70px 70px 18px 18px;
+      clip-path: none;
+    }
+
+    .pants {
+      clip-path: polygon(22% 0, 78% 0, 72% 100%, 54% 100%, 50% 40%, 46% 100%, 28% 100%);
+    }
+
+    .tag {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: white;
+      color: black;
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .product-info {
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .product-info h3 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .product-info p {
+      color: #aaa;
+    }
+
+    .buy-btn {
+      border: none;
+      background: white;
+      color: black;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .about {
+      background: white;
+      color: black;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about h2 {
+      font-size: clamp(42px, 7vw, 86px);
+      text-transform: uppercase;
+      line-height: 0.9;
+    }
+
+    .about p {
+      color: #444;
+      font-size: 18px;
+      line-height: 1.85;
+      margin-bottom: 18px;
+    }
+
+    .newsletter {
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(183, 164, 255, 0.2), transparent 35%),
+        #0b0b0b;
+    }
+
+    .newsletter h2 {
+      font-size: clamp(40px, 7vw, 86px);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .newsletter p {
+      color: #c9c9c9;
+      margin-bottom: 28px;
+    }
+
+    .email-box {
+      max-width: 520px;
+      margin: auto;
+      display: flex;
+      background: white;
+      padding: 8px;
+      border-radius: 999px;
+    }
+
+    .email-box input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 0 18px;
+      font-size: 15px;
+    }
+
+    .email-box button {
+      border: none;
+      border-radius: 999px;
+      background: #111;
+      color: white;
+      padding: 14px 22px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    footer {
+      padding: 34px 24px;
+      color: #888;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-inner,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .design-card {
+        min-height: 460px;
+      }
+
+      .shirt {
+        height: 320px;
+      }
+
+      .email-box {
+        border-radius: 24px;
+        flex-direction: column;
+      }
+
+      .email-box input {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">AMJ<span>STUDIO</span></a>
+      <div class="nav-links">
+        <a href="#shop">Shop</a>
+        <a href="#design">Design</a>
+        <a href="#about">Om AMJ</a>
+        <a href="#kontakt">Kontakt</a>
+      </div>
+      <a href="#shop" class="cart">Bag 0</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="pill">DROP 01 · AMJ STUDIO ORIGINALS</div>
+        <h1>Streetwear<br><span class="gradient-text">med edge.</span></h1>
+        <p>
+          En påhittad första version av AMJ Studio: mörk bas, lila glow, oversized fits och tydlig premiumkänsla. Perfekt som start för din klädbutik.
+        </p>
+        <div class="buttons">
+          <a href="#shop" class="btn-primary">Shoppa nu</a>
+          <a href="#design" class="btn-secondary">Se designen</a>
+        </div>
+      </div>
+
+      <div class="design-card" id="design">
+        <div class="shirt">
+          <div class="shirt-logo">
+            AMJ
+            <small>STUDIO 2026</small>
+          </div>
+        </div>
+        <div class="floating-label">
+          <strong>Signature Tee</strong><br>
+          <span style="color:#cfcfcf;">Heavy cotton · Oversized fit</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="shop">
+    <div class="section-inner">
+      <div class="section-title">
+        <div>
+          <p style="color:#8f7dff; letter-spacing:4px; text-transform:uppercase; margin-bottom:12px;">Shop</p>
+          <h2>Drop 01</h2>
+        </div>
+        <p>
+          Exempelprodukter så länge. Byt namn, priser och design när du har dina riktiga plagg klara.
+        </p>
+      </div>
+
+      <div class="products">
+        <div class="product-card">
+          <div class="product-visual">
+            <span class="tag">Nyhet</span>
+            <div class="mini-shirt hoodie">AMJ</div>
+          </div>
+          <div class="product-info">
+            <div>
+              <h3>AMJ Shadow Hoodie</h3>
+              <p>899 kr</p>
+            </div>
+            <button class="buy-btn" onclick="addToCart()">+</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-visual">
+            <span class="tag">Limited</span>
+            <div class="mini-shirt">AMJ</div>
+          </div>
+          <div class="product-info">
+            <div>
+              <h3>Studio Oversized Tee</h3>
+              <p>449 kr</p>
+            </div>
+            <button class="buy-btn" onclick="addToCart()">+</button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-visual">
+            <span class="tag">Drop 01</span>
+            <div class="mini-shirt pants">AMJ</div>
+          </div>
+          <div class="product-info">
+            <div>
+              <h3>AMJ Utility Pants</h3>
+              <p>749 kr</p>
+            </div>
+            <button class="buy-btn" onclick="addToCart()">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="section-inner about-grid">
+      <h2>Built for drops.</h2>
+      <div>
+        <p>
+          AMJ Studio är tänkt som ett modernt klädmärke med minimalistisk streetwear, starka silhuetter och tydliga detaljer.
+        </p>
+        <p>
+          Designen använder svart, vitt och lila glow för att skapa en exklusiv känsla. Du kan enkelt byta färger, texter och produktnamn direkt i koden.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter" id="kontakt">
+    <div class="section-inner">
+      <h2>Join the drop</h2>
+      <p>Samla mejladresser innan första kollektionen släpps.</p>
+      <div class="email-box">
+        <input type="email" placeholder="Din e-post" />
+        <button onclick="alert('Tack! Detta är bara en demo än så länge.')">Skicka</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 AMJ Studio · amjstudio.se</p>
+      <p>Instagram · TikTok · info@amjstudio.se</p>
+    </div>
+  </footer>
+
+  <script>
+    let cartCount = 0;
+
+    function addToCart() {
+      cartCount++;
+      document.querySelector('.cart').textContent = 'Bag ' + cartCount;
+    }
+  </script>
+</body>
+</html>
