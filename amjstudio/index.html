@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AMJstudios | Drop 01</title>
+  <meta name="description" content="AMJstudios — minimalistisk streetwear från Sverige. Oversized fits, heavyweight cotton och clean cream embroidery.">
+  <meta name="theme-color" content="#050505">
+  <meta property="og:title" content="AMJstudios | Drop 01">
+  <meta property="og:description" content="Black fits. Clean cuts. Minimalistisk streetwear med cream embroidery.">
+  <meta property="og:image" content="hoodie2.png">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="shortcut icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
@@ -36,6 +41,39 @@
       background: var(--black);
       color: var(--white);
       overflow-x: hidden;
+    }
+
+    body.loading {
+      overflow: hidden;
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.65s ease, visibility 0.65s ease;
+    }
+
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-logo-img {
+      width: min(220px, 62vw);
+      height: auto;
+      object-fit: contain;
+      animation: loaderPulse 1.4s ease-in-out infinite alternate;
+    }
+
+    @keyframes loaderPulse {
+      from { opacity: 0.45; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1.02); }
     }
 
     a {
@@ -127,11 +165,17 @@
     }
 
     .logo {
-      font-family: Georgia, serif;
-      color: var(--cream);
-      font-size: clamp(28px, 4vw, 48px);
-      letter-spacing: -4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       line-height: 1;
+    }
+
+    .logo img {
+      height: 58px;
+      width: auto;
+      object-fit: contain;
+      display: block;
     }
 
     .cart {
@@ -232,30 +276,13 @@
     }
 
     .hero-product {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 60px;
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at center,
-    rgba(201, 182, 140, 0.18),
-    transparent 45%);
-}
-
-.hero-center-image {
-  width: min(720px, 100%);
-  object-fit: contain;
-  filter:
-    drop-shadow(0 0 50px rgba(0,0,0,0.8))
-    drop-shadow(0 0 120px rgba(201,182,140,0.12));
-  transition: transform 0.5s ease;
-}
-
-.hero-center-image:hover {
-  transform: scale(1.03);
-}
+      min-height: 680px;
+      padding: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
     .hero-product img {
       width: 95%;
@@ -403,6 +430,16 @@
       color: var(--cream);
       font-weight: 950;
       font-size: 16px;
+    }
+
+    .stock-note {
+      display: inline-block;
+      margin-top: 9px;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
     }
 
     .buy-btn {
@@ -670,6 +707,51 @@
       margin-bottom: 26px;
     }
 
+    .product-stock {
+      color: var(--cream);
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .product-accordions {
+      border-top: 1px solid var(--line);
+      margin-top: 30px;
+    }
+
+    .accordion-item {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .accordion-btn {
+      width: 100%;
+      min-height: 58px;
+      background: transparent;
+      color: var(--white);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .accordion-content {
+      display: none;
+      color: var(--text-muted);
+      line-height: 1.75;
+      padding: 0 0 20px;
+      font-size: 15px;
+    }
+
+    .accordion-item.open .accordion-content {
+      display: block;
+    }
+
     .features {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -693,6 +775,33 @@
       border-top: 1px solid var(--line);
       padding: 32px 42px;
       color: #888;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-brand img {
+      width: 70px;
+      height: auto;
+      object-fit: contain;
+      opacity: 0.9;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-links a {
+      transition: 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--cream);
     }
 
     .footer-inner {
@@ -738,8 +847,10 @@
 
       .logo {
         text-align: center;
-        font-size: 30px;
-        letter-spacing: -3px;
+      }
+
+      .logo img {
+        height: 46px;
       }
 
       .nav-actions {
@@ -830,8 +941,8 @@
         height: 40px;
       }
 
-      .logo {
-        font-size: 26px;
+      .logo img {
+        height: 38px;
       }
 
       .cart {
@@ -965,7 +1076,10 @@
   </style>
 </head>
 
-<body>
+<body class="loading">
+  <div class="loader" id="loader">
+    <img src="logo.png" class="loader-logo-img" alt="AMJstudios logo">
+  </div>
   <div class="top-banner">Drop 01 öppnar snart · AMJstudios originals · Sverige</div>
 
   <nav class="navbar">
@@ -979,7 +1093,9 @@
         <a href="#contact" onclick="showHome()">Contact</a>
       </div>
 
-      <a href="#home" class="logo" onclick="showHome()">AMJstudios</a>
+      <a href="#home" class="logo" onclick="showHome()">
+        <img src="logo.png" alt="AMJstudios logo">
+      </a>
 
       <div class="nav-actions">
         <a href="#contact" onclick="showHome()">Join drop</a>
@@ -1004,7 +1120,7 @@
       </div>
 
       <div class="hero-product">
-        <img src="hoodie2.png" alt="AMJ Studios Hoodie" class="hero-center-image">
+        <img src="Hoodie1.png" alt="AMJstudios Hoodie">
       </div>
     </header>
 
@@ -1034,19 +1150,21 @@
               <div>
                 <h3>AMJstudios Hoodie</h3>
                 <p>899 kr</p>
+                <span class="stock-note">Limited stock</span>
               </div>
               <button class="buy-btn" onclick="event.stopPropagation(); addToCart();">+</button>
             </div>
           </article>
 
-          <article class="product-card" onclick="openProduct('AMJstudios Oversized Tee', '449 kr', 't-shirt1.png')">
+          <article class="product-card" onclick="openProduct('AMJstudios T-SHIRT', '449 kr', 't-shirt1.png')">
             <div class="product-image">
               <img class="product-photo" src="t-shirt1.png" alt="AMJstudios T-shirt">
             </div>
             <div class="product-info">
               <div>
-                <h3>AMJstudios Oversized Tee</h3>
+                <h3>AMJstudios T-SHIRT</h3>
                 <p>449 kr</p>
+                <span class="stock-note">Only few left</span>
               </div>
               <button class="buy-btn" onclick="event.stopPropagation(); addToCart();">+</button>
             </div>
@@ -1117,17 +1235,48 @@
 
         <div class="product-actions">
           <button class="btn btn-primary" onclick="addToCart()">Lägg i varukorg</button>
-          <button class="btn btn-secondary" onclick="alert('Demo: riktig betalning kopplas senare via Shopify, Stripe eller Klarna.')">Gå till betalning</button>
+          <button class="btn btn-secondary" onclick="alert('Checkout öppnar snart. Betalning kopplas senare via Shopify, Stripe eller Klarna.')">Checkout coming soon</button>
         </div>
 
         <p class="product-desc" id="productDesc">
           Heavy cotton oversized fit med minimalistisk AMJstudios branding.
         </p>
 
+        <p class="product-stock" id="productStock">Limited quantity · No restocks</p>
+
         <div class="features">
           <div class="feature">Heavy cotton</div>
           <div class="feature">Oversized fit</div>
           <div class="feature">Cream embroidery</div>
+        </div>
+
+        <div class="product-accordions">
+          <div class="accordion-item open">
+            <button class="accordion-btn" onclick="toggleAccordion(this)">
+              Material <span>+</span>
+            </button>
+            <div class="accordion-content">
+              Heavyweight cotton-känsla med mjuk insida. Skapad för boxy passform och premium streetwear-look.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAccordion(this)">
+              Fit guide <span>+</span>
+            </button>
+            <div class="accordion-content">
+              Oversized/boxy fit. Välj din vanliga storlek för relaxed look eller gå ner en storlek för tightare passform.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-btn" onclick="toggleAccordion(this)">
+              Shipping & returns <span>+</span>
+            </button>
+            <div class="accordion-content">
+              Demo-info: Frakt och returer kopplas när butiken går live med riktig checkout.
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -1135,9 +1284,18 @@
 
   <footer>
     <div class="footer-inner">
-      <p>© 2026 AMJstudios</p>
+      <div class="footer-brand">
+        <img src="logo.png" alt="AMJstudios logo">
+        <p>© 2026 AMJstudios</p>
+      </div>
+      <div class="footer-links">
+        <a href="#" onclick="alert('Shipping info kommer snart.')">Shipping</a>
+        <a href="#" onclick="alert('Returns info kommer snart.')">Returns</a>
+        <a href="#" onclick="alert('Terms kommer snart.')">Terms</a>
+        <a href="#" onclick="alert('Privacy policy kommer snart.')">Privacy</a>
+        <a href="mailto:info@amjstudios.se">Contact</a>
+      </div>
       <p>Instagram · TikTok · info@amjstudios.se</p>
-      <p>All rights reserved</p>
     </div>
   </footer>
 
@@ -1146,14 +1304,23 @@
 
     const productData = {
       "Hoodie1.png": {
-        desc: "AMJstudios Hoodie i svart med cream embroidery. Boxy fit, clean front, känguruficka och tung premiumkänsla.",
-        gallery: ["Hoodie1.png", "t-shirt1.png"]
+        desc: "AMJstudios Hoodie i svart med cream embroidery. Boxy fit, clean front, känguruficka och stor AMJ back print.",
+        stock: "Limited quantity · No restocks",
+        gallery: ["Hoodie1.png", "backhoodie.png"]
       },
       "t-shirt1.png": {
-        desc: "AMJstudios Oversized Tee i svart med cream embroidery. Boxy silhouette, clean chest logo och heavyweight cotton-känsla.",
-        gallery: ["t-shirt1.png", "Hoodie1.png"]
+        desc: "AMJstudios T-SHIRT i svart med cream embroidery. Boxy silhouette, clean chest logo och stor AMJ back print.",
+        stock: "Only few left · Drop 01",
+        gallery: ["t-shirt1.png", "backt-shirt.png"]
       }
     };
+
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        document.getElementById('loader').classList.add('hidden');
+        document.body.classList.remove('loading');
+      }, 650);
+    });
 
     function toggleMenu() {
       document.getElementById('navLinks').classList.toggle('open');
@@ -1178,6 +1345,7 @@
       document.getElementById('productPrice').textContent = price;
       document.getElementById('mainProductImage').src = image;
       document.getElementById('productDesc').textContent = productData[image].desc;
+      document.getElementById('productStock').textContent = productData[image].stock;
 
       renderGallery(image);
       resetSize();
@@ -1229,6 +1397,11 @@
       });
 
       document.querySelectorAll('.size-btn')[2].classList.add('active');
+    }
+
+    function toggleAccordion(button) {
+      const item = button.parentElement;
+      item.classList.toggle('open');
     }
 
     window.onpopstate = function () {
