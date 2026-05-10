@@ -1186,7 +1186,7 @@
       </div>
 
       <div class="product-details">
-        <button class="btn btn-secondary back-btn" onclick="closeProduct()">← Tillbaka</button>
+        <button type="button" class="btn btn-secondary back-btn" onclick="closeProduct()">← Tillbaka</button>
 
         <h1 id="productTitle">Produkt</h1>
         <p id="productPrice" class="product-price">0 kr</p>
@@ -1224,28 +1224,31 @@
   <script>
     let cartCount = 0;
 
-    function addToCart() {
-      cartCount++;
-      document.querySelector('.cart').textContent = 'Bag ' + cartCount;
-    }
+function addToCart() {
+  cartCount++;
+  document.querySelector('.cart').textContent = 'Bag ' + cartCount;
+}
 
-    function openProduct(name, price) {
-      document.getElementById('homeContent').style.display = 'none';
-      document.getElementById('productPage').classList.add('active');
-      document.getElementById('productTitle').textContent = name;
-      document.getElementById('productPrice').textContent = price;
-      window.scrollTo(0, 0);
-    }
+function openProduct(name, price) {
+  document.getElementById('homeContent').style.display = 'none';
+  document.getElementById('productPage').classList.add('active');
 
-    function closeProduct() {
-      document.getElementById('homeContent').style.display = 'block';
-      document.getElementById('productPage').classList.remove('active');
-      window.scrollTo(0, 0);
-    }
+  document.getElementById('productTitle').textContent = name;
+  document.getElementById('productPrice').textContent = price;
 
-    function showHome() {
-      closeProduct();
-    }
+  window.scrollTo(0, 0);
+}
+
+function closeProduct() {
+  document.getElementById('productPage').classList.remove('active');
+  document.getElementById('homeContent').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function showHome() {
+    document.getElementById('productPage').classList.remove('active');
+    document.getElementById('homeContent').style.display = 'block';
+}
 
     function selectSize(button) {
       document.querySelectorAll('.size-btn').forEach(btn => {
