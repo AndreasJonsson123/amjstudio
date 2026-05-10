@@ -1221,41 +1221,74 @@
     </div>
   </footer>
 
-  <script>
-    let cartCount = 0;
+<script>
+  let cartCount = 0;
 
-function addToCart() {
-  cartCount++;
-  document.querySelector('.cart').textContent = 'Bag ' + cartCount;
-}
+  function addToCart() {
+    cartCount++;
+    document.querySelector('.cart').textContent = 'Bag ' + cartCount;
+  }
 
-function openProduct(name, price) {
-  document.getElementById('homeContent').style.display = 'none';
-  document.getElementById('productPage').classList.add('active');
+  function openProduct(name, price) {
 
-  document.getElementById('productTitle').textContent = name;
-  document.getElementById('productPrice').textContent = price;
+    history.pushState(
+      {
+        product: name,
+        price: price
+      },
+      "",
+      "#product"
+    );
 
-  window.scrollTo(0, 0);
-}
+    document.getElementById('homeContent').style.display = 'none';
 
-function closeProduct() {
-  document.getElementById('productPage').classList.remove('active');
-  document.getElementById('homeContent').style.display = 'block';
-  window.scrollTo(0, 0);
-}
+    document.getElementById('productPage')
+      .classList.add('active');
 
-function showHome() {
-    document.getElementById('productPage').classList.remove('active');
-    document.getElementById('homeContent').style.display = 'block';
-}
+    document.getElementById('productTitle')
+      .textContent = name;
 
-    function selectSize(button) {
-      document.querySelectorAll('.size-btn').forEach(btn => {
+    document.getElementById('productPrice')
+      .textContent = price;
+
+    window.scrollTo(0, 0);
+  }
+
+  function closeProduct() {
+
+    history.back();
+
+    document.getElementById('productPage')
+      .classList.remove('active');
+
+    document.getElementById('homeContent')
+      .style.display = 'block';
+
+    window.scrollTo(0, 0);
+  }
+
+  function showHome() {
+    closeProduct();
+  }
+
+  function selectSize(button) {
+
+    document.querySelectorAll('.size-btn')
+      .forEach(btn => {
         btn.classList.remove('active');
       });
-      button.classList.add('active');
-    }
-  </script>
+
+    button.classList.add('active');
+  }
+
+  window.onpopstate = function () {
+
+    document.getElementById('productPage')
+      .classList.remove('active');
+
+    document.getElementById('homeContent')
+      .style.display = 'block';
+  };
+</script>
 </body>
 </html>
